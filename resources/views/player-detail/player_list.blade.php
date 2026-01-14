@@ -8,7 +8,7 @@
         <div class="card-body d-flex align-items-center justify-content-between">
             <div>
                 <h3 class="mb-1 text-primary">All Players</h3>
-                <p class="text-muted mb-0">List of all players with editable player type (Pool/Non-Pool)</p>
+                <p class="text-muted mb-0">List of all players filtered by type (Pool/Non-Pool)</p>
             </div>
             <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">
                 ← Back
@@ -54,7 +54,6 @@
                                 <th>Department</th>
                                 <th>Player Type</th>
                                 <th>Profile</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -70,7 +69,6 @@
                                     <td>{{ $player->designation }}</td>
                                     <td>{{ $player->department }}</td>
                                     <td>
-                                        {{-- The text inside this span is what DataTables will filter --}}
                                         <span class="badge {{ $player->ptype == 'Pool' ? 'bg-success' : 'bg-info' }}">
                                             {{ $player->ptype ?? 'Not Set' }}
                                         </span>
@@ -80,18 +78,6 @@
                                             alt="Player" 
                                             class="rounded-circle border"
                                             style="width: 60px; height: 60px; object-fit: cover;">
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('players.update-ptype', $player->id) }}" method="POST">
-                                            @csrf
-                                            <div class="input-group input-group-sm">
-                                                <select name="ptype" class="form-select">
-                                                    <option value="Pool" {{ $player->ptype == 'Pool' ? 'selected' : '' }}>Pool</option>
-                                                    <option value="Non-Pool" {{ $player->ptype == 'Non-Pool' ? 'selected' : '' }}>Non-Pool</option>
-                                                </select>
-                                                <button type="submit" class="btn btn-primary btn-sm">Update</button>
-                                            </div>
-                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -119,32 +105,26 @@
                 paging: true,
                 ordering: true,
                 columnDefs: [
-                    { searchable: false, orderable: false, targets: [4, 5] } 
+                    // Only column 4 (Profile Image) is now non-sortable
+                    { searchable: false, orderable: false, targets: [4] } 
                 ],
                 pageLength: 10
             });
 
-            // 2. Add Custom Filter Logic
-            // This runs every time table.draw() is called
+            // 2. Custom Filter Logic
             $.fn.dataTable.ext.search.push(
                 function(settings, data, dataIndex) {
-                    // Get currently selected radio button value
                     var selectedFilter = $('input[name="ptypeFilter"]:checked').val();
-                    
-                    // Column 3 is "Player Type". .trim() removes any hidden spaces.
-                    var columnValue = data[3].trim(); 
+                    var columnValue = data[3].trim(); // Column 3 is still "Player Type"
 
-                    // If "All" is selected, show everything
                     if (selectedFilter === "") {
                         return true;
                     }
-
-                    // Strict comparison: Only show if it matches exactly
                     return columnValue === selectedFilter;
                 }
             );
 
-            // 3. Redraw table when a radio button is clicked
+            // 3. Redraw table on radio change
             $('.player-filter').on('change', function() {
                 table.draw();
             });
