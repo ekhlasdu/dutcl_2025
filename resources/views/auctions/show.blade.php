@@ -34,7 +34,7 @@
                         <div class="me-3">
                             @php
                                 $imagePath = $player->profile_image
-                                    ? asset('storage/' . $player->profile_image)
+                                    ? '/storage/profile_images/' . $player->profile_image
                                     : asset('images/demo-image.jpg');
                             @endphp
 
