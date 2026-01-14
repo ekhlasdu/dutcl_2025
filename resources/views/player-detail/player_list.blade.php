@@ -54,6 +54,7 @@
                                 <th>Department</th>
                                 <th>Player Type</th>
                                 <th>Availability</th>
+                                <th>Unvailability</th>
                                 <th>Profile</th>
                             </tr>
                         </thead>
@@ -75,6 +76,7 @@
                                         </span>
                                     </td>
                                     <td>{{ $player->availability }}</td>
+                                    <td>{{ $player->unavailability }}</td>
                                     <td>
                                         <img src="{{ $imagePath }}" 
                                             alt="Player" 
