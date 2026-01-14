@@ -3,6 +3,7 @@
 use App\Http\Controllers\PlayerDetailController;
 use App\Http\Controllers\AuctionController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 
 
@@ -57,6 +58,15 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/sold-players', [AuctionController::class, 'soldPlayers'])->name('auction.sold');
     Route::get('/make-unsold/{player_detail_id}', [AuctionController::class, 'make_unsold'])->name('auction.make-unsold');
+});
+
+Route::get('/clear', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    Artisan::call('storage:link');
+    return "Cleared!";
 });
 
 require __DIR__.'/auth.php';
