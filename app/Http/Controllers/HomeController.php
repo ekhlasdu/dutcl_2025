@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
-    public function listPlayers()
+    public function player_list()
     {
         $players = PlayerDetail::with('user')->get();
         $user = Auth::user();
