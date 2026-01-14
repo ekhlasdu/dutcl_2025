@@ -53,6 +53,7 @@
                                 <th>Designation</th>
                                 <th>Department</th>
                                 <th>Player Type</th>
+                                <th>Availability</th>
                                 <th>Profile</th>
                             </tr>
                         </thead>
@@ -73,6 +74,7 @@
                                             {{ $player->ptype ?? 'Not Set' }}
                                         </span>
                                     </td>
+                                    <td>{{ $player->availability }}</td>
                                     <td>
                                         <img src="{{ $imagePath }}" 
                                             alt="Player" 

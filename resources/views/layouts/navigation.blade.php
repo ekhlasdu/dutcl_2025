@@ -21,6 +21,10 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                            <a class="nav-link btn btn-warning px-3 ms-2" href="{{ url('player_list') }}" style="color:white">Player List</a>
+                </li>
+
                 @auth
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{ url('dashboard') }}">Dashboard</a>

@@ -26,6 +26,7 @@ class PlayerDetail extends Model
         'ptype',
         // maybe add a column to mark category (pool/non‑pool) if not present
         'category', // e.g. 'pool' or 'non‑pool'
+        'availability'
     ];
 
     public function user()

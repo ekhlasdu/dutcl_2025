@@ -119,6 +119,15 @@
             @enderror
         </div>
 
+        <div class="mb-3">
+            <label class="form-label">Availability</label>
+            <input type="text" name="availability" value="{{$playDetail->availability?$playDetail->availability:''}}"  class="form-control">
+            ex: 25 January 2026, 27 January 2026, 29 January 2026, 31 January 2026
+            @error('availability')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
         {{-- ✅ Profile Image --}}
         <div class="mb-3">
             <label for="profile_image" class="form-label">Profile Image</label>
@@ -139,7 +148,6 @@
                     </div>
                 </div>
             @endif
-
             @error('profile_image')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
