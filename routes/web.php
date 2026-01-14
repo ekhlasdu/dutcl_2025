@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PlayerDetailController;
 use App\Http\Controllers\AuctionController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
