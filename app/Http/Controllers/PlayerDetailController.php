@@ -79,6 +79,9 @@ class PlayerDetailController extends Controller
             'played_dutcl' => 'required|in:Yes,No',
             'profile_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'availability' => 'nullable',
+            'unavailability' => 'nullable',
+
+            
         ]);
 
         $data['user_id'] = $user->id;
