@@ -24,6 +24,7 @@ Route::get('/', function () {
 
 
 Route::get('/player_list', [HomeController::class, 'player_list']);
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
