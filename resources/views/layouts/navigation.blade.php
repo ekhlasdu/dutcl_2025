@@ -12,7 +12,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side -->
             <ul class="navbar-nav me-auto">
-               
+               @auth
+                
+                @endauth
                 <li class="nav-item">
                     <a class="navbar-brand fw-bold d-flex align-items-center" href="{{ url('') }}">
                         <img src="{{ asset('images/du-logo.png') }}" 
@@ -22,14 +24,33 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{ url('dashboard') }}">Dashboard</a>
+                </li>
+
+                <li class="nav-item">
                             <a class="nav-link btn btn-warning px-3 ms-2" href="{{ url('player_list') }}" style="color:white">Player List</a>
                 </li>
 
-                @auth
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{ url('dashboard') }}">Dashboard</a>
+                <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle btn btn-warning px-3 ms-2" 
+                            href="#" 
+                            id="playerListDropdown" 
+                            role="button" 
+                            data-bs-toggle="dropdown" 
+                            aria-expanded="false" 
+                            style="color:white">
+                                Teams
+                            </a>
+                            <ul class="dropdown-menu shadow border-0" aria-labelledby="playerListDropdown">
+                                <li><a class="dropdown-item" href="{{ url('team_detail/1') }}">Mohan Ekushey</a></li>
+                                <li><a class="dropdown-item" href="{{ url('team_detail/2') }}">Uttal 69</a></li>
+                                <li><a class="dropdown-item" href="{{ url('team_detail/3') }}">Durbar 71</a></li>
+                                <li><a class="dropdown-item" href="{{ url('team_detail/4') }}">Jagroto July</a></li>
+                                
+                            </ul>
                 </li>
-                @endauth
+
+                
 
                 
             </a>
@@ -43,6 +64,9 @@
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('players') ? 'active' : '' }}" href="{{ url('players') }}" style="color:white">Player List</a>
                     </li>
+
+                    
+
                     @if ($user->email =='admin_user@admin.com')
                     <li class="nav-item">
                         <a class="nav-link {{ request()->is('operateAuction/Pool') ? 'active' : '' }}" href="{{ url('operateAuction/Pool') }}" style="color:white">Pool</a>

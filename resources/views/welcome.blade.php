@@ -50,15 +50,36 @@
                     
                     
                     @guest
+                        
+
+                         <li class="nav-item">
+                            <a class="nav-link btn btn-warning px-3 ms-2" href="{{ url('player_list') }}" style="color:white">Player List</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle btn btn-warning px-3 ms-2" 
+                            href="#" 
+                            id="playerListDropdown" 
+                            role="button" 
+                            data-bs-toggle="dropdown" 
+                            aria-expanded="false" 
+                            style="color:white">
+                                Teams
+                            </a>
+                            <ul class="dropdown-menu shadow border-0" aria-labelledby="playerListDropdown">
+                                <li><a class="dropdown-item" href="{{ url('team_detail/1') }}">Mohan Ekushey</a></li>
+                                <li><a class="dropdown-item" href="{{ url('team_detail/2') }}">Uttal 69</a></li>
+                                <li><a class="dropdown-item" href="{{ url('team_detail/3') }}">Durbar 71</a></li>
+                                <li><a class="dropdown-item" href="{{ url('team_detail/4') }}">Jagroto July</a></li>
+                                
+                            </ul>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link btn btn-warning px-3 ms-2" href="{{ route('register') }}" style="color:white">Register</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link btn btn-warning px-3 ms-2" href="{{ route('login') }}" style="color:white">Login</a>
-                        </li>
-
-                         <li class="nav-item">
-                            <a class="nav-link btn btn-warning px-3 ms-2" href="{{ url('player_list') }}" style="color:white">Player List</a>
                         </li>
                     @else
                         <li class="nav-item">
