@@ -76,6 +76,10 @@
                         </li>
 
                         <li class="nav-item">
+                            <a class="nav-link btn btn-warning px-3 ms-2" href="{{ url('fixture') }}" style="color:white">Fixture</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link btn btn-warning px-3 ms-2" href="{{ route('register') }}" style="color:white">Register</a>
                         </li>
                         <li class="nav-item">

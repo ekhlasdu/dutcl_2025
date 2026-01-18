@@ -36,4 +36,9 @@ class HomeController extends Controller
 
         return view('player-detail.team_details', compact('team', 'players','user','id'));
     }
+
+    public function fixture()
+    {
+        return view('fixture');
+    }
 }

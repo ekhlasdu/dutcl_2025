@@ -26,6 +26,7 @@ Route::get('/', function () {
 
 Route::get('/player_list', [HomeController::class, 'player_list']);
 Route::get('/team_detail/{id}', [HomeController::class, 'team_detail']);
+Route::get('/fixture', [HomeController::class, 'fixture']);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
