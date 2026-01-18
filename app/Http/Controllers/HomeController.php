@@ -27,10 +27,21 @@ class HomeController extends Controller
         $team = Team::findOrFail($id);
 
         // Get all players bought by this team through the auctions table
-        $players = Auction::with(['playerDetail.user'])
-            ->where('team_id', $team->id)
-            ->orderBy('amount', 'desc')
-            ->get();
+        $players = Auction::select('auctions.*')
+        ->join('player_details', 'auctions.player_detail_id', '=', 'player_details.id')
+        ->with(['playerDetail.user'])
+        ->where('auctions.team_id', $team->id)
+        /* Priority 1: Icon Player (Highest)
+        Priority 2: Pool
+        Priority 3: Non-Pool
+        */
+        ->orderByRaw("CASE 
+            WHEN player_details.ptype = 'Icon Player' THEN 1 
+            WHEN player_details.ptype = 'Pool' THEN 2 
+            ELSE 3 
+        END ASC")
+        ->orderBy('auctions.amount', 'desc') // Secondary sort by price
+        ->get();
 
         $user = Auth::user();
 

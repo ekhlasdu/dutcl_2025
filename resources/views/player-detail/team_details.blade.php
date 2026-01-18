@@ -118,7 +118,7 @@
                                 <th>Designation</th>
                                 <th>Department</th>
                                 <th>Player Type</th>
-                                <th>Buying Amount</th>
+                                <!-- <th>Buying Amount</th> -->
                                 <th>Profile</th>
                             </tr>
                         </thead>
@@ -141,7 +141,7 @@
                                             {{ ucfirst($player->ptype) }}
                                         </span>
                                     </td>
-                                    <td>{{ number_format($auction->amount, 0) }}</td>
+                                    <!-- <td>{{ number_format($auction->amount, 0) }}</td> -->
                                     <td>
                                         <img src="{{ $imagePath }}" 
                                             alt="Player" 
